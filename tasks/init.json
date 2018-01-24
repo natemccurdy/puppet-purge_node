@@ -1,0 +1,11 @@
+{
+  "description": "Purge Puppet agent nodes",
+  "input_method": "environment",
+  "supports_noop": false,
+  "parameters": {
+    "agent_certnames": {
+      "description": "A comma-separated list of agent certificate names",
+      "type": "String[1]"
+    }
+  }
+}
