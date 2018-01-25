@@ -23,7 +23,7 @@ def purge_node(agent)
   {
     stdout: stdout.strip,
     stderr: stderr.strip,
-    exit_code: status.exitstatus
+    exit_code: status.exitstatus,
   }
 end
 
