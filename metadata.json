@@ -1,0 +1,42 @@
+{
+  "name": "nate-purge_node",
+  "version": "1.0.0",
+  "author": "Nate McCurdy",
+  "summary": "A Puppet Task to purge agents",
+  "license": "Apache-2.0",
+  "source": "https://github.com/natemccurdy/puppet-purge_node",
+  "project_page": "https://github.com/natemccurdy/puppet-purge_node",
+  "issues_url": "https://github.com/natemccurdy/puppet-purge_node/issues",
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.7.0 < 6.0.0"
+    }
+  ],
+  "dependencies": [ ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat"
+    },
+    {
+      "operatingsystem": "CentOS"
+    },
+    {
+      "operatingsystem": "OracleLinux"
+    },
+    {
+      "operatingsystem": "Scientific"
+    },
+    {
+      "operatingsystem": "SLES"
+    },
+    {
+      "operatingsystem": "Ubuntu"
+    }
+  ],
+  "tags": [
+    "purge",
+    "task",
+    "agent"
+  ]
+}

@@ -23,28 +23,27 @@ def purge_node(agent)
   {
     stdout: stdout.strip,
     stderr: stderr.strip,
-    exit_code: status.exitstatus
+    exit_code: status.exitstatus,
   }
 end
 
+results = {}
 agents = ENV['PT_agent_certnames'].split(',')
 
-result = {}
-
 agents.each do |agent|
-  result[agent] = {}
+  results[agent] = {}
 
   if agent == Puppet[:certname]
-    result[agent][:result] = 'Refusing to purge the Puppet Master'
+    results[agent][:result] = 'Refusing to purge the Puppet Master'
     next
   end
 
   output = purge_node(agent)
-  result[agent][:result] = if output[:exit_code].zero?
-                             'Node purged'
-                           else
-                             output
-                           end
+  results[agent][:result] = if output[:exit_code].zero?
+                              'Node purged'
+                            else
+                              output
+                            end
 end
 
-puts result.to_json
+puts results.to_json
