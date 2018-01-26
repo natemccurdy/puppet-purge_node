@@ -2,7 +2,7 @@
 
 ## [1.0.1](https://github.com/natemccurdy/puppet-purge_node/tree/1.0.1) (2018-01-26)
 
-[Full Changelog](https://github.com/naten/puppet-purge_node/compare/1.0.0...1.0.1)
+[Full Changelog](https://github.com/natemccurdy/puppet-purge_node/compare/1.0.0...1.0.1)
 
 * Correct the Puppet dependency in module's metadata.
 
