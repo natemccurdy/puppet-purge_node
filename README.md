@@ -4,6 +4,8 @@
 
 This module adds a Task for purging Puppet agents.
 
+For Puppet Enterprise users, this means you can allow users or admins to decommission nodes without giving them SSH access to your Puppet master! The ability to run this task remotely or via the Console is gated and tracked by the [RBAC system](https://puppet.com/docs/pe/2017.3/rbac/managing_access.html) built in to PE.
+
 ## Requirements
 
 This module is compatible with Puppet Enterprise and Puppet Bolt.
@@ -16,7 +18,7 @@ This module is compatible with Puppet Enterprise and Puppet Bolt.
 
 ### Puppet Enterprise Tasks
 
-With Puppet Enterprise 2017.3 or higher, you can run this task [from the console](https://puppet.com/docs/pe/2017.3/orchestrator/running_tasks_in_the_console.html) or the command line. 
+With Puppet Enterprise 2017.3 or higher, you can run this task [from the console](https://puppet.com/docs/pe/2017.3/orchestrator/running_tasks_in_the_console.html) or the command line.
 
 Here's a command line example where we are purging the `foo`, `bar`, and `baz` nodes from the Puppet master, `master.corp.net`:
 
