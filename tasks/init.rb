@@ -17,7 +17,7 @@ unless Puppet[:server] == Puppet[:certname]
 end
 
 def purge_node(agent)
-  command = "/opt/puppetlabs/puppet/bin/puppet node purge #{agent}"
+  command = "/opt/puppetlabs/puppet/bin/puppet node purge \"#{agent}\""
 
   stdout, stderr, status = Open3.capture3(command)
   {
