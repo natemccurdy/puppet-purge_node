@@ -5,7 +5,7 @@
   "parameters": {
     "agent_certnames": {
       "description": "A comma-separated list of agent certificate names",
-      "type": "String[1]"
+      "type": "Pattern[/^([a-z0-9._-]+,?)+$/]"
     }
   }
 }
