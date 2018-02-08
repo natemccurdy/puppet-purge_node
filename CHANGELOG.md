@@ -1,5 +1,12 @@
 # Change Log
 
+## [1.1.2](https://github.com/natemccurdy/puppet-purge_node/tree/1.1.2) (2018-02-08)
+
+[Full Changelog](https://github.com/natemccurdy/puppet-purge_node/compare/1.1.1...1.1.2)
+
+* Fix bug that prevented purging nodes with uppercase letters
+* Add Travis-CI builds
+
 ## [1.1.1](https://github.com/natemccurdy/puppet-purge_node/tree/1.1.1) (2018-01-30)
 
 [Full Changelog](https://github.com/natemccurdy/puppet-purge_node/compare/1.1.0...1.1.1)
