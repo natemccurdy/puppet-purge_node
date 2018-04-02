@@ -12,7 +12,7 @@ require 'open3'
 Puppet.initialize_settings
 
 unless Puppet[:server] == Puppet[:certname]
-  puts 'This task can only be run against the Master (of Masters)'
+  puts 'This task can only be run on the Master (of Masters)'
   exit 1
 end
 

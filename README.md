@@ -17,14 +17,18 @@ This module is compatible with Puppet Enterprise and Puppet Bolt.
 
 ## Usage
 
+Specify the agents that will be purged using the `agent_certnames` parameter.
+
+> Note: The target node of this task should always be your primary Puppet master (MoM or CA), not the agents being purged.
+
 ### Puppet Enterprise Tasks
 
 With Puppet Enterprise 2017.3 or higher, you can run this task [from the console](https://puppet.com/docs/pe/2017.3/orchestrator/running_tasks_in_the_console.html) or the command line.
 
-Here's a command line example where we are purging the `foo`, `bar`, and `baz` nodes from the Puppet master, `master.corp.net`:
+In this example, we are purging three agents from **master.corp.net**: `agent1`, `agent2`, and `agent3`
 
 ```shell
-[nate@workstation]$ puppet task run purge_node agent_certnames=foo,bar,baz -n master.corp.net
+[nate@workstation]$ puppet task run purge_node agent_certnames=agent1,agent2,agent3 -n master.corp.net
 
 Starting job ...
 New job ID: 24
@@ -32,13 +36,13 @@ Nodes: 1
 
 Started on master.corp.net ...
 Finished on node master.corp.net
-  bar :
+  agent2 :
     result : Node purged
 
-  baz :
+  agent3 :
     result : Node purged
 
-  foo :
+  agent1 :
     result : Node purged
 
 Job completed. 1/1 nodes succeeded.
@@ -50,12 +54,12 @@ Duration: 6 sec
 With [Bolt](https://puppet.com/docs/bolt/0.x/running_tasks_and_plans_with_bolt.html), you can run this task on the command line like so:
 
 ```shell
-bolt task run purge_node agent_certnames=foo,bar,baz --nodes master.corp.net
+bolt task run purge_node agent_certnames=agent1,agent2,agent3 --nodes master.corp.net
 ```
 
 ## Parameters
 
-* `agent_certnames`: A comma-separated list of Puppet agent certificate names.
+* `agent_certnames`: The Puppet agents that will be purged. This can be one node or multiple nodes in a comma-separated list.
 
 ## Finishing the Job
 
