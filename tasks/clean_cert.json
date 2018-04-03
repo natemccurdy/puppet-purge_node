@@ -1,0 +1,11 @@
+{
+  "description": "Clean (remove) a Puppet agent's certificate from your Master",
+  "input_method": "environment",
+  "supports_noop": false,
+  "parameters": {
+    "agent_certnames": {
+      "description": "A comma-separated list of agent certificate to clean",
+      "type": "Pattern[/^([A-Za-z0-9._-]+,?)+$/]"
+    }
+  }
+}

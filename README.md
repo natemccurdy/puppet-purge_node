@@ -3,9 +3,9 @@
 
 # Purge Node Task
 
-This module adds a Task for purging Puppet agents.
+This module adds Tasks for purging Puppet agents and cleaning certificates.
 
-For Puppet Enterprise users, this means you can allow users or admins to decommission nodes without giving them SSH access to your Puppet master! The ability to run this task remotely or via the Console is gated and tracked by the [RBAC system](https://puppet.com/docs/pe/2017.3/rbac/managing_access.html) built in to PE.
+For Puppet Enterprise users, this means you can allow users or admins to decommission nodes or clean certificates without giving them SSH access to your Puppet master! The ability to run this task remotely or via the Console is gated and tracked by the [RBAC system](https://puppet.com/docs/pe/2017.3/rbac/managing_access.html) built in to PE.
 
 ## Requirements
 
@@ -15,15 +15,35 @@ This module is compatible with Puppet Enterprise and Puppet Bolt.
 
 * To [run tasks with Puppet Bolt](https://puppet.com/docs/bolt/0.x/running_tasks_and_plans_with_bolt.html), Bolt 0.5 or later must be installed on the machine from which you are running task commands. The master receiving the task must have SSH enabled.
 
-## Usage
+## Tasks
 
-Specify the agents that will be purged using the `agent_certnames` parameter.
+Specify the agents that will be purged or cleaned using the `agent_certnames` parameter.
 
 > Note: The target node of this task should always be your primary Puppet master (MoM or CA), not the agents being purged.
 
-### Puppet Enterprise Tasks
+### `purge_node`
 
-With Puppet Enterprise 2017.3 or higher, you can run this task [from the console](https://puppet.com/docs/pe/2017.3/orchestrator/running_tasks_in_the_console.html) or the command line.
+Use this task to completely purge Puppet agents from the environment. This will completely remove the agent from the console, remove its reports, remove its certificate, and free up its PE license.
+
+This task runs `puppet node purge <agent>` on your master.
+
+Parameters:
+
+* `agent_certnames`: The Puppet agents that will be purged. This can be one node or multiple nodes in a comma-separated list.
+
+### `purge_node::clean_cert`
+
+Use this task to remove a Puppet agent's certificate from the Puppet master. Useful if you want to regenerate a certificate.
+
+This task runs `puppet cert clean <agent>` on your master.
+
+Parameters:
+
+* `agent_certnames`: The Puppet agents certificates that will be cleaned. This can be one node or multiple certs in a comma-separated list.
+
+## Execute With Puppet Enterprise
+
+With Puppet Enterprise 2017.3 or higher, you can run these tasks [from the console](https://puppet.com/docs/pe/2017.3/orchestrator/running_tasks_in_the_console.html) or the command line.
 
 In this example, we are purging three agents from **master.corp.net**: `agent1`, `agent2`, and `agent3`
 
@@ -49,17 +69,13 @@ Job completed. 1/1 nodes succeeded.
 Duration: 6 sec
 ```
 
-### Bolt
+## Execute With Bolt
 
-With [Bolt](https://puppet.com/docs/bolt/0.x/running_tasks_and_plans_with_bolt.html), you can run this task on the command line like so:
+With [Bolt](https://puppet.com/docs/bolt/0.x/running_tasks_and_plans_with_bolt.html), you can run these tasks on the command line like so:
 
 ```shell
 bolt task run purge_node agent_certnames=agent1,agent2,agent3 --nodes master.corp.net
 ```
-
-## Parameters
-
-* `agent_certnames`: The Puppet agents that will be purged. This can be one node or multiple nodes in a comma-separated list.
 
 ## Finishing the Job
 
