@@ -3,16 +3,15 @@
 
 # Purge Node Task
 
-This module adds Tasks for purging Puppet agents and cleaning certificates.
+This module adds Tasks for purging nodes and cleaning certificates in Puppet.
 
 For Puppet Enterprise users, this means you can allow users or admins to decommission nodes or clean certificates without giving them SSH access to your Puppet master! The ability to run this task remotely or via the Console is gated and tracked by the [RBAC system](https://puppet.com/docs/pe/2017.3/rbac/managing_access.html) built in to PE.
 
 ## Requirements
 
-This module is compatible with Puppet Enterprise and Puppet Bolt.
+This module is compatible with Puppet Enterprise and Bolt.
 
 * To [run tasks with Puppet Enterprise](https://puppet.com/docs/pe/2017.3/orchestrator/running_tasks.html), PE 2017.3 or later must be used.
-
 * To [run tasks with Puppet Bolt](https://puppet.com/docs/bolt/0.x/running_tasks_and_plans_with_bolt.html), Bolt 0.5 or later must be installed on the machine from which you are running task commands. The master receiving the task must have SSH enabled.
 
 ## Tasks
@@ -23,7 +22,9 @@ Specify the agents that will be purged or cleaned using the `agent_certnames` pa
 
 ### `purge_node`
 
-Use this task to completely purge Puppet agents from the environment. This will completely remove the agent from the console, remove its reports, remove its certificate, and free up its PE license.
+Use this task to completely purge Puppet agents from the environment.
+
+This will completely remove the agent from the console, remove its reports, remove its certificate, and free up its PE license.
 
 This task runs `puppet node purge <agent>` on your master.
 
@@ -33,7 +34,7 @@ Parameters:
 
 ### `purge_node::clean_cert`
 
-Use this task to remove a Puppet agent's certificate from the Puppet master. Useful if you want to regenerate a certificate.
+If you just want to remove a node's certificate without completely purging it, use the `purge_node::clean_cert` task.
 
 This task runs `puppet cert clean <agent>` on your master.
 
@@ -43,7 +44,7 @@ Parameters:
 
 ## Execute With Puppet Enterprise
 
-With Puppet Enterprise 2017.3 or higher, you can run these tasks [from the console](https://puppet.com/docs/pe/2017.3/orchestrator/running_tasks_in_the_console.html) or the command line.
+With Puppet Enterprise 2017.3 or higher, you can run these tasks from the console ([see this link for documentation](https://puppet.com/docs/pe/2017.3/orchestrator/running_tasks_in_the_console.html)) or from the command line.
 
 In this example, we are purging three agents from **master.corp.net**: `agent1`, `agent2`, and `agent3`
 
@@ -71,7 +72,7 @@ Duration: 6 sec
 
 ## Execute With Bolt
 
-With [Bolt](https://puppet.com/docs/bolt/0.x/running_tasks_and_plans_with_bolt.html), you can run these tasks on the command line like so:
+With [Bolt](https://puppet.com/docs/bolt/0.x/running_tasks_and_plans_with_bolt.html), you can run these tasks from the command line like so:
 
 ```shell
 bolt task run purge_node agent_certnames=agent1,agent2,agent3 --nodes master.corp.net
