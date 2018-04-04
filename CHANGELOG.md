@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.2.0](https://github.com/natemccurdy/puppet-purge_node/tree/1.2.0) (2018-04-04)
+
+[Full Changelog](https://github.com/natemccurdy/puppet-purge_node/compare/1.1.2...1.2.0)
+
+* Add new task to clean a certificate without purging the node
+
 ## [1.1.2](https://github.com/natemccurdy/puppet-purge_node/tree/1.1.2) (2018-02-08)
 
 [Full Changelog](https://github.com/natemccurdy/puppet-purge_node/compare/1.1.1...1.1.2)
