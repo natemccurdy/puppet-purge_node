@@ -7,12 +7,6 @@
   "source": "https://github.com/natemccurdy/puppet-purge_node",
   "project_page": "https://github.com/natemccurdy/puppet-purge_node",
   "issues_url": "https://github.com/natemccurdy/puppet-purge_node/issues",
-  "requirements": [
-    {
-      "name": "puppet",
-      "version_requirement": ">= 5.0.0 < 6.0.0"
-    }
-  ],
   "dependencies": [
 
   ],
@@ -36,11 +30,20 @@
       "operatingsystem": "Ubuntu"
     }
   ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 5.0.0 < 6.0.0"
+    }
+  ],
   "tags": [
     "purge",
     "task",
     "agent",
     "certificate",
     "clean"
-  ]
+  ],
+  "pdk-version": "1.6.1",
+  "template-url": "file:///opt/puppetlabs/pdk/share/cache/pdk-templates.git",
+  "template-ref": "1.6.1-0-g6b0d497"
 }
