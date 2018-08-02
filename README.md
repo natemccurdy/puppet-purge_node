@@ -100,3 +100,13 @@ This can be done with the Orchestrator via the Console's Jobs page or the comman
 puppet job run -q 'resources { type = "Class" and title = "Puppet_enterprise::Profile::Master" and !(certname = "FQDN_of_your_MoM") }'
 ```
 
+## Development
+
+This module uses the [Puppet Development Kit (PDK)](https://puppet.com/docs/pdk/1.x/pdk.html) to manage unit tests and style validation.
+
+If you're going to submit a change, please consider using the PDK to validate your change:
+
+1. Install the PDK
+    * (MacOS) `brew cask install puppetlabs/puppet/pdk`
+1. Run validation tests: `pdk validate`
+
