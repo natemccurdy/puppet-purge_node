@@ -1,0 +1,6 @@
+---
+# These CI system's aren't used.
+appveyor.yml:
+  delete: true
+.gitlab-ci.yml:
+  delete: true
