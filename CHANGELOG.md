@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.2.1](https://github.com/natemccurdy/puppet-purge_node/tree/1.2.1) (2018-09-20)
+
+[Full Changelog](https://github.com/natemccurdy/puppet-purge_node/compare/1.2.0...1.2.1)
+
+* Better CA server detection
+
 ## [1.2.0](https://github.com/natemccurdy/puppet-purge_node/tree/1.2.0) (2018-04-04)
 
 [Full Changelog](https://github.com/natemccurdy/puppet-purge_node/compare/1.1.2...1.2.0)

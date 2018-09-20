@@ -1,6 +1,6 @@
 {
   "name": "nate-purge_node",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "Nate McCurdy",
   "summary": "A Puppet Task to purge agents",
   "license": "Apache-2.0",
@@ -33,7 +33,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 5.0.0 < 6.0.0"
+      "version_requirement": ">= 5.0.0 < 7.0.0"
     }
   ],
   "tags": [
