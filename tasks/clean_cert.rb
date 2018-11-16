@@ -1,11 +1,11 @@
 #!/opt/puppetlabs/puppet/bin/ruby
-#
+
 # Puppet Task to clean a node's certificate
 # This can only be run against the Puppet Master.
-#
+
 # Parameters:
 #   * agent_certnames - A comma-separated list of agent certificates to clean/remove.
-#
+
 require 'puppet'
 require 'open3'
 
@@ -19,8 +19,15 @@ if !File.exist?(bootstrap_cfg) || File.readlines(bootstrap_cfg).grep(%r{^[^#].+c
   exit 1
 end
 
-def clean_cert(agent)
-  stdout, stderr, status = Open3.capture3('/opt/puppetlabs/puppet/bin/puppet', 'cert', 'clean', agent)
+# Version 6 and higher use the 'puppetserver' command for cleaning certs
+cmd = if Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') >= 0
+        ['/opt/puppetlabs/bin/puppetserver', 'ca', 'clean', '--certname']
+      else
+        ['/opt/puppetlabs/puppet/bin/puppet', 'cert', 'clean']
+      end
+
+def clean_cert(agent, cmd)
+  stdout, stderr, status = Open3.capture3(*[cmd, agent].flatten)
   {
     stdout: stdout.strip,
     stderr: stderr.strip,
@@ -39,12 +46,10 @@ agents.each do |agent|
     next
   end
 
-  output = clean_cert(agent)
-  results[agent][:result] = if output[:exit_code].zero?
-                              'Certificate removed'
-                            else
-                              output
-                            end
+  output = clean_cert(agent, cmd)
+  results[agent][:result] = output[:exit_code].zero? ? 'Certificate removed' : output
 end
 
 puts results.to_json
+
+exit(results.values.all? { |v| v[:result] == 'Certificate removed' }) ? 0 : 1

@@ -1,11 +1,11 @@
 #!/opt/puppetlabs/puppet/bin/ruby
-#
+
 # Puppet Task to purge nodes
 # This can only be run against the Puppet Master.
-#
+
 # Parameters:
 #   * agent_certnames - A comma-separated list of agent certificate names.
-#
+
 require 'puppet'
 require 'open3'
 
@@ -40,11 +40,9 @@ agents.each do |agent|
   end
 
   output = purge_node(agent)
-  results[agent][:result] = if output[:exit_code].zero?
-                              'Node purged'
-                            else
-                              output
-                            end
+  results[agent][:result] = output[:exit_code].zero? ? 'Node purged' : output
 end
 
 puts results.to_json
+
+exit(results.values.all? { |v| v[:result] == 'Certificate removed' }) ? 0 : 1
