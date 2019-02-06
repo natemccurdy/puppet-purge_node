@@ -9,10 +9,12 @@ For Puppet Enterprise users, this means you can allow users or admins to decommi
 
 ## Requirements
 
-This module is compatible with Puppet Enterprise and Bolt.
+This module is compatible with Bolt/Puppet and Puppet Enterprise.
 
+> This task is *not* currently compatible with Puppetserver 6+ or PE 2019+
+
+* To [run tasks with Bolt](https://puppet.com/docs/bolt/0.x/running_tasks_and_plans_with_bolt.html), Bolt 0.5 or later must be installed on the machine from which you are running task commands. The master receiving the task must have SSH enabled.
 * To [run tasks with Puppet Enterprise](https://puppet.com/docs/pe/2017.3/orchestrator/running_tasks.html), PE 2017.3 or later must be used.
-* To [run tasks with Puppet Bolt](https://puppet.com/docs/bolt/0.x/running_tasks_and_plans_with_bolt.html), Bolt 0.5 or later must be installed on the machine from which you are running task commands. The master receiving the task must have SSH enabled.
 
 ## Tasks
 
