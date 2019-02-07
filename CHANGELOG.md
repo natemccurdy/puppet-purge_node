@@ -1,5 +1,13 @@
 # Change Log
 
+## [1.3.0](https://github.com/natemccurdy/puppet-purge_node/tree/1.3.0) (2019-02-07)
+
+[Full Changelog](https://github.com/natemccurdy/puppet-purge_node/compare/1.2.1...1.3.0)
+
+* Add support for Puppetserver 6 and PE 2019
+* Add support for cleaning certs on open-source Puppetserver masters
+* Tasks now exit non-zero on failure
+
 ## [1.2.1](https://github.com/natemccurdy/puppet-purge_node/tree/1.2.1) (2018-09-20)
 
 [Full Changelog](https://github.com/natemccurdy/puppet-purge_node/compare/1.2.0...1.2.1)
