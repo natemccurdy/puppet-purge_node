@@ -1,7 +1,7 @@
 #!/opt/puppetlabs/puppet/bin/ruby
 #
 # Puppet Task to clean a node's certificate
-# This can only be run against the Puppet Master.
+# This can only be run against a Puppet Master.
 #
 # Parameters:
 #   * agent_certnames - A comma-separated list of agent certificates to clean/remove.
@@ -19,8 +19,17 @@ if !File.exist?(bootstrap_cfg) || File.readlines(bootstrap_cfg).grep(%r{^[^#].+c
   exit 1
 end
 
+def clean_cmd
+  # Puppetserver 6 uses the new 'ca' commands.
+  if Puppet::Util::Package.versioncmp(Puppet.version, '6.0.0') >= 0
+    ['/opt/puppetlabs/bin/puppetserver', 'ca', 'clean', '--certname']
+  else
+    ['/opt/puppetlabs/puppet/bin/puppet', 'cert', 'clean']
+  end
+end
+
 def clean_cert(agent)
-  stdout, stderr, status = Open3.capture3('/opt/puppetlabs/puppet/bin/puppet', 'cert', 'clean', agent)
+  stdout, stderr, status = Open3.capture3(*[clean_cmd, agent].flatten)
   {
     stdout: stdout.strip,
     stderr: stderr.strip,

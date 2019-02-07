@@ -1,7 +1,7 @@
 #!/opt/puppetlabs/puppet/bin/ruby
 #
 # Puppet Task to purge nodes
-# This can only be run against the Puppet Master.
+# This can only be run against a Puppet Enterprise master/CA.
 #
 # Parameters:
 #   * agent_certnames - A comma-separated list of agent certificate names.

@@ -11,8 +11,6 @@ For Puppet Enterprise users, this means you can allow users or admins to decommi
 
 This module is compatible with Bolt/Puppet and Puppet Enterprise.
 
-> This task is *not* currently compatible with Puppetserver 6+ or PE 2019+
-
 * To [run tasks with Bolt](https://puppet.com/docs/bolt/0.x/running_tasks_and_plans_with_bolt.html), Bolt 0.5 or later must be installed on the machine from which you are running task commands. The master receiving the task must have SSH enabled.
 * To [run tasks with Puppet Enterprise](https://puppet.com/docs/pe/2017.3/orchestrator/running_tasks.html), PE 2017.3 or later must be used.
 
@@ -24,11 +22,13 @@ Specify the agents that will be purged or cleaned using the `agent_certnames` pa
 
 ### `purge_node`
 
+> NOTE: This task only works with Puppet Enterprise.
+
 Use this task to completely purge Puppet agents from the environment.
 
 This will completely remove the agent from the console, remove its reports, remove its certificate, and free up its PE license.
 
-This task runs `puppet node purge <agent>` on your master.
+This task runs `puppet node purge <agent>` on your Puppet Enterprise master.
 
 Parameters:
 
@@ -38,7 +38,7 @@ Parameters:
 
 If you just want to remove a node's certificate without completely purging it, use the `purge_node::clean_cert` task.
 
-This task runs `puppet cert clean <agent>` on your master.
+This task runs `puppet cert clean <agent>` or `puppetserver ca clean --certname <agent>` (puppetserver 6+) on your master.
 
 Parameters:
 
