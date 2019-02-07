@@ -11,12 +11,12 @@ require 'open3'
 
 Puppet.initialize_settings
 
-# This task only works when running against your Puppet CA server, so let's check for that.
-# In Puppetserver, that means that the bootstrap.cfg file contains 'certificate-authority-service'.
-bootstrap_cfg = '/etc/puppetlabs/puppetserver/bootstrap.cfg'
-if !File.exist?(bootstrap_cfg) || File.readlines(bootstrap_cfg).grep(%r{^[^#].+certificate-authority-service$}).empty?
-  puts 'This task can only be run on your certificate authority Puppet master (MoM)'
-  exit 1
+def targetting_a_ca?
+  # This task only works when running against your Puppet CA server, so let's check for that.
+  # In Puppet Enterprise, that means that the bootstrap.cfg file contains 'certificate-authority-service'.
+  bootstrap_cfg = '/etc/puppetlabs/puppetserver/bootstrap.cfg'
+
+  File.exist?(bootstrap_cfg) && !File.readlines(bootstrap_cfg).grep(%r{^[^#].+certificate-authority-service$}).empty?
 end
 
 def clean_cmd
@@ -38,22 +38,36 @@ def clean_cert(agent)
 end
 
 results = {}
-agents = ENV['PT_agent_certnames'].split(',')
+exitcode = 0
 
-agents.each do |agent|
-  results[agent] = {}
+if !targetting_a_ca?
 
-  if agent == Puppet[:certname]
-    results[agent][:result] = 'Refusing to remove the Puppet Master certificate'
-    next
+  results[:_error] = {
+    msg: 'Error: This task does not appear to be targetting a Puppet CA master. Refusing to continue.',
+  }
+  exitcode = 1
+
+else
+
+  agents = ENV['PT_agent_certnames'].split(',')
+
+  agents.each do |agent|
+    results[agent] = {}
+
+    if agent == Puppet[:certname]
+      results[agent][:result] = "Error: Refusing to remove the Puppet Master's certificate"
+      exitcode = 2
+      next
+    end
+
+    output = clean_cert(agent)
+    results[agent][:result] = if output[:exit_code].zero?
+                                'Certificate removed'
+                              else
+                                output
+                              end
   end
-
-  output = clean_cert(agent)
-  results[agent][:result] = if output[:exit_code].zero?
-                              'Certificate removed'
-                            else
-                              output
-                            end
 end
 
 puts results.to_json
+exit exitcode
