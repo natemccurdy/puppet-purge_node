@@ -68,11 +68,7 @@ else
     end
 
     output = clean_cert(agent)
-    results[agent][:result] = if output[:exit_code].zero?
-                                'Certificate removed'
-                              else
-                                output
-                              end
+    results[agent][:result] = output[:exit_code].zero? ? 'Certificate removed' : output
   end
 end
 

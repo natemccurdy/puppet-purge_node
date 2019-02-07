@@ -51,11 +51,7 @@ else
     end
 
     output = purge_node(agent)
-    results[agent][:result] = if output[:exit_code].zero?
-                                'Node purged'
-                              else
-                                output
-                              end
+    results[agent][:result] = output[:exit_code].zero? ? 'Node purged' : output
   end
 end
 
