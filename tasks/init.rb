@@ -1,7 +1,7 @@
 #!/opt/puppetlabs/puppet/bin/ruby
 #
 # Puppet Task to purge nodes
-# This can only be run against a Puppet Enterprise master/CA.
+# This can only be run against a Puppet Enterprise CA master.
 #
 # Parameters:
 #   * agent_certnames - A comma-separated list of agent certificate names.
@@ -34,7 +34,7 @@ exitcode = 0
 if !targetting_a_ca?
 
   results[:_error] = {
-    msg: 'Error: This task does not appear to be targetting a Puppet CA master. Refusing to continue.',
+    msg: 'Error: This task does not appear to be targetting a Puppet Enterprise CA master. Refusing to continue.',
   }
   exitcode = 1
 

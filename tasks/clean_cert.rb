@@ -1,22 +1,29 @@
 #!/opt/puppetlabs/puppet/bin/ruby
 #
 # Puppet Task to clean a node's certificate
-# This can only be run against a Puppet Master.
+# This can only be run against a CA master (PE or open-source).
 #
 # Parameters:
 #   * agent_certnames - A comma-separated list of agent certificates to clean/remove.
 #
 require 'puppet'
 require 'open3'
+require 'facter'
 
 Puppet.initialize_settings
 
+def pe_master?
+  !Facter.value('pe_build').nil?
+end
+
 def targetting_a_ca?
   # This task only works when running against your Puppet CA server, so let's check for that.
-  # In Puppet Enterprise, that means that the bootstrap.cfg file contains 'certificate-authority-service'.
-  bootstrap_cfg = '/etc/puppetlabs/puppetserver/bootstrap.cfg'
+  # In Puppetserver, that means the configs contain 'certificate-authority-service', uncommented.
 
-  File.exist?(bootstrap_cfg) && !File.readlines(bootstrap_cfg).grep(%r{^[^#].+certificate-authority-service$}).empty?
+  # The puppetserver config file differs between PE and open-source puppetserver.
+  ca_cfg = pe_master? ? '/etc/puppetlabs/puppetserver/bootstrap.cfg' : '/etc/puppetlabs/puppetserver/services.d/ca.cfg'
+
+  File.exist?(ca_cfg) && !File.readlines(ca_cfg).grep(%r{^[^#].+certificate-authority-service$}).empty?
 end
 
 def clean_cmd
