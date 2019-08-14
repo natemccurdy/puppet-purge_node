@@ -9,20 +9,18 @@ For Puppet Enterprise users, this means you can allow users or admins to decommi
 
 ## Requirements
 
-This module is compatible with Bolt/Puppet and Puppet Enterprise.
+This module is compatible with Bolt, Puppet, and Puppet Enterprise.
 
-* To [run tasks with Bolt](https://puppet.com/docs/bolt/0.x/running_tasks_and_plans_with_bolt.html), Bolt 0.5 or later must be installed on the machine from which you are running task commands. The master receiving the task must have SSH enabled.
-* To [run tasks with Puppet Enterprise](https://puppet.com/docs/pe/2017.3/orchestrator/running_tasks.html), PE 2017.3 or later must be used.
+* For open-source Puppet, use [Bolt to run the task](https://puppet.com/docs/bolt/0.x/running_tasks_and_plans_with_bolt.html). Bolt 0.5+ is required and the SSH transport must be setup.
+* For Puppet Enterprise, use Bolt, `puppet task`,  or the PE Console [to run the task](https://puppet.com/docs/pe/2017.3/orchestrator/running_tasks.html). PE 2017.3+ is supported and the SSH or PCP transports can be used.
 
 ## Tasks
 
-Specify the agents that will be purged or cleaned using the `agent_certnames` parameter.
-
-> Note: The target node of this task should always be your primary Puppet master (MoM or CA), not the agents being purged.
+> NOTE: The target node of these tasks should always be your primary Puppet master (MoM or CA), not the agents being purged.
 
 ### `purge_node`
 
-> NOTE: This task only works with Puppet Enterprise.
+> NOTE: The `purge_node` task only works with Puppet Enterprise.
 
 Use this task to completely purge Puppet agents from the environment.
 
@@ -32,17 +30,17 @@ This task runs `puppet node purge <agent>` on your Puppet Enterprise master.
 
 Parameters:
 
-* `agent_certnames`: The Puppet agents that will be purged. This can be one node or multiple nodes in a comma-separated list.
+* `agent_certnames`: The Puppet agents that will be purged. This can be one certname or multiple certnames in a comma-separated list.
 
 ### `purge_node::clean_cert`
 
-If you just want to remove a node's certificate without completely purging it, use the `purge_node::clean_cert` task.
+Use this task to remove just a node's certificate.
 
 This task runs `puppet cert clean <agent>` or `puppetserver ca clean --certname <agent>` (puppetserver 6+) on your master.
 
 Parameters:
 
-* `agent_certnames`: The Puppet agents certificates that will be cleaned. This can be one node or multiple certs in a comma-separated list.
+* `agent_certnames`: The agent certificate names that will be cleaned. This can be one certname or multiple certnames in a comma-separated list.
 
 ## Execute With Puppet Enterprise
 
