@@ -1,5 +1,17 @@
 # Change Log
 
+## [1.3.2](https://github.com/natemccurdy/puppet-purge_node/tree/1.3.2) (2019-11-18)
+
+[Full Changelog](https://github.com/natemccurdy/puppet-purge_node/compare/1.3.1...1.3.2)
+
+* Add Apache-2.0 License
+
+## [1.3.1](https://github.com/natemccurdy/puppet-purge_node/tree/1.3.1) (2019-08-14)
+
+[Full Changelog](https://github.com/natemccurdy/puppet-purge_node/compare/1.3.0...1.3.1)
+
+* Improve the documentation regarding requirements and how to run the task
+
 ## [1.3.0](https://github.com/natemccurdy/puppet-purge_node/tree/1.3.0) (2019-02-07)
 
 [Full Changelog](https://github.com/natemccurdy/puppet-purge_node/compare/1.2.1...1.3.0)
