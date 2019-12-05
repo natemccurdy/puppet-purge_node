@@ -8,6 +8,7 @@
 #
 require 'puppet'
 require 'open3'
+require 'json'
 
 Puppet.initialize_settings
 
@@ -40,7 +41,8 @@ if !targetting_a_ca?
 
 else
 
-  agents = ENV['PT_agent_certnames'].split(',')
+  params = JSON.parse(STDIN.read)
+  agents = params['agent_certnames'].is_a?(Array) ? params['agent_certnames'] : params['agent_certnames'].split(',')
 
   agents.each do |agent|
     results[agent] = {}
