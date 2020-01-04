@@ -70,6 +70,21 @@ Job completed. 1/1 nodes succeeded.
 Duration: 6 sec
 ```
 
+The `agent_certnames` parameter also accepts JSON input, and may be executed with the Puppet Enterprise orchestrator API. The example below is a valid request to the commands endpoint ([see this link for documentation](https://puppet.com/docs/pe/2017.3/orchestrator_api_commands_endpoint.html)).
+
+```json
+{
+  "environment" : "production",
+  "task" : "purge_node",
+  "params" : {
+    "agent_certnames" : ["agent1", "agent2", "agent3"]
+  },
+  "scope" : {
+    "nodes" : ["master.corp.net"]
+  }
+}
+```
+
 ## Execute With Bolt
 
 With [Bolt](https://puppet.com/docs/bolt/0.x/running_tasks_and_plans_with_bolt.html), you can run these tasks from the command line like so:
