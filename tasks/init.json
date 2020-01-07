@@ -1,10 +1,10 @@
 {
-  "description": "Purge Puppet agent nodes",
+  "description": "Purges a Puppet agent",
   "input_method": "stdin",
   "supports_noop": false,
   "parameters": {
     "agent_certnames": {
-      "description": "A comma-separated list of agent certificate names",
+      "description": "A comma-separated list or JSON array of agents to purge",
       "type": "Variant[Pattern[/^([A-Za-z0-9._-]+,?)+$/], Array[Pattern[/^([A-Za-z0-9._-]+,?)+$/]]]"
     }
   }
