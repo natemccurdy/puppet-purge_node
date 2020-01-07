@@ -1,11 +1,11 @@
 {
   "description": "Purge Puppet agent nodes",
-  "input_method": "environment",
+  "input_method": "stdin",
   "supports_noop": false,
   "parameters": {
     "agent_certnames": {
       "description": "A comma-separated list of agent certificate names",
-      "type": "Pattern[/^([A-Za-z0-9._-]+,?)+$/]"
+      "type": "Variant[Pattern[/^([A-Za-z0-9._-]+,?)+$/], Array[Pattern[/^([A-Za-z0-9._-]+,?)+$/]]]"
     }
   }
 }
