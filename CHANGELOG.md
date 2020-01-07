@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.4.0](https://github.com/natemccurdy/puppet-purge_node/tree/1.4.0) (2020-01-07)
+
+[Full Changelog](https://github.com/natemccurdy/puppet-purge_node/compare/1.3.2...1.4.0)
+
+* Allow JSON arrays as input to the `agent_certnames` parameter (#9).
+
 ## [1.3.2](https://github.com/natemccurdy/puppet-purge_node/tree/1.3.2) (2019-11-18)
 
 [Full Changelog](https://github.com/natemccurdy/puppet-purge_node/compare/1.3.1...1.3.2)
