@@ -33,7 +33,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 5.0.0 < 7.0.0"
+      "version_requirement": ">= 5.0.0 < 8.0.0"
     }
   ],
   "tags": [
@@ -43,7 +43,7 @@
     "certificate",
     "clean"
   ],
-  "pdk-version": "1.14.1",
-  "template-url": "pdk-default#1.14.1",
-  "template-ref": "1.14.1-0-g0b5b39b"
+  "pdk-version": "2.1.1",
+  "template-url": "pdk-default#2.1.1",
+  "template-ref": "tags/2.1.1-0-g03daa92"
 }
