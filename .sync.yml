@@ -4,7 +4,5 @@ appveyor.yml:
   delete: true
 .gitlab-ci.yml:
   delete: true
-
 .travis.yml:
-  deploy_to_forge:
-    enabled: false
+  delete: true
