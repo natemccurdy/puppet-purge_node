@@ -1,5 +1,5 @@
 [![Puppet Forge](https://img.shields.io/puppetforge/v/nate/purge_node.svg)](https://forge.puppetlabs.com/nate/purge_node)
-[![Build Status](https://travis-ci.org/natemccurdy/puppet-purge_node.svg?branch=master)](https://travis-ci.org/natemccurdy/puppet-purge_node)
+[![Build Status](https://github.com/natemccurdy/puppet-purge_node/actions/workflows/checks.yml/badge.svg)](https://github.com/natemccurdy/puppet-purge_node/actions)
 
 # The Purge Node Task
 

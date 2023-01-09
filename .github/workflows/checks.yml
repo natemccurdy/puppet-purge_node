@@ -1,0 +1,16 @@
+---
+name: checks
+
+"on": pull_request
+
+concurrency:
+  group: ${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: "docker run --rm -v ${{ github.workspace }}:/root puppet/pdk:2.5.0.0 validate"
+      - run: "docker run --rm -v ${{ github.workspace }}:/root puppet/pdk:2.5.0.0 test unit"
