@@ -1,0 +1,19 @@
+---
+name: release
+
+"on":
+  push:
+    tags:
+      - "*.*.*"
+
+jobs:
+  release:
+    name: Release a tagged version to GitHub Releases
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ncipollo/release-action@v1.12.0
+        with:
+          makeLatest: true
