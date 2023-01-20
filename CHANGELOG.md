@@ -1,5 +1,13 @@
 # Change Log
 
+## [2.0.0](https://github.com/natemccurdy/puppet-purge_node/tree/2.0.0)
+
+[Full Changelog](https://github.com/natemccurdy/puppet-purge_node/compare/1.4.0...2.0.0)
+
+* Bump minimum supported Puppet version to 6.0.0
+* Clarify support for all Puppetserver-supported OS's
+* Update PDK boilerplate to 2.5.0
+
 ## [1.4.0](https://github.com/natemccurdy/puppet-purge_node/tree/1.4.0) (2020-01-07)
 
 [Full Changelog](https://github.com/natemccurdy/puppet-purge_node/compare/1.3.2...1.4.0)
